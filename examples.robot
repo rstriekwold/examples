@@ -26,9 +26,12 @@ Login As
     ClickText             Login                       anchor=Freeze          delay=1      
 
 Fill MFA
-    ${mfa_code}=         GetOTP    ${username}   ${secret}   ${login_url}    
+    ${mfa_code}=         GetOTP    ${username}   ${secret}   ${login_url}
+    ${test_session}=     isText     Verify
+    IF  ${test_session}
     TypeSecret           Verification Code       ${mfa_code}      
-    ClickText            Verify 
+    ClickText            Verify
+    END
 
 
 Home
